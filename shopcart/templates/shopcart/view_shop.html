@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>首頁</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>TodoList</h1>
+{% if not request.user.is_authenticated %}
+<h3>請先註冊或登入</h3>
+{% else %}
+{{form.image}}
+<table>
+
+    {% for shop in shops %}
+    <li>
+        <h3>{{shop.name}}</h3>
+        <h4 style="color: red;">{{shop.price}}元</h4>
+        <!-- <img src="static{{shop.image.url}}" alt="圖片錯誤" width="420" height="320"> -->
+        <img src="/media/{{shop.image}}" alt="圖片錯誤" width="420" height="320">
+        {{shop.description}}
+        {{shop.modified}}
+
+
+    </li>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
